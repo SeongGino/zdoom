@@ -453,6 +453,8 @@ OptionMenu "CustomizeControls"
 	Control 	"$CNTRLMNU_STRAFE",					"+strafe"
 	Control 	"$CNTRLMNU_SCOREBOARD",				"+showscores"
 	Control 	"$CNTRLMNU_TOGGLESCOREBOARD",		"togglescoreboard"
+	Control		"$CNTRLMNU_PAUSE",	"pause"
+	Control 	"$CNTRLMNU_INVOKEMENU",	"menu_main"
 	StaticText 	""
 	StaticText 	"$CNTRLMNU_CHAT", 1
 	Control 	"$CNTRLMNU_SAY",					"messagemode"
