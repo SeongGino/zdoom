@@ -168,12 +168,10 @@ void I_SetMouseCapture()
 {
 	// Clear out any mouse movement.
 	SDL_GetRelativeMouseState (NULL, NULL);
-	SDL_SetRelativeMouseMode (SDL_TRUE);
 }
 
 void I_ReleaseMouseCapture()
 {
-	SDL_SetRelativeMouseMode (SDL_FALSE);
 }
 
 static void PostMouseMove (int x, int y)
@@ -244,7 +242,6 @@ static bool inGame()
 static void I_CheckNativeMouse ()
 {
 	bool focus = SDL_GetKeyboardFocus() != NULL;
-	bool fs = screen->IsFullscreen();
 	
 	bool wantNative = !focus || (!use_mouse || GUICapture || paused || demoplayback || !inGame());
 
@@ -449,13 +446,10 @@ void MessagePump (const SDL_Event &sev)
 
 	case SDL_JOYBUTTONDOWN:
 	case SDL_JOYBUTTONUP:
-		if (!GUICapture)
-		{
-			event.type = sev.type == SDL_JOYBUTTONDOWN ? EV_KeyDown : EV_KeyUp;
-			event.data1 = KEY_FIRSTJOYBUTTON + sev.jbutton.button;
-			if(event.data1 != 0)
-				D_PostEvent(&event);
-		}
+		event.type = sev.type == SDL_JOYBUTTONDOWN ? EV_KeyDown : EV_KeyUp;
+		event.data1 = KEY_FIRSTJOYBUTTON + sev.jbutton.button;
+		if(event.data1 != 0)
+			D_PostEvent(&event);
 		break;
 	}
 }
